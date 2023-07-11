@@ -107,14 +107,20 @@ const WeatherApp = () => {
           )}
           {weatherData.weeklyForecast && (
             <div className="weekly-forecast">
-              {weatherData.weeklyForecast.map((forecast) => (
-                <div className="day-forecast" key={forecast.dt}>
-                  <h3>{forecast.dt_txt.split(" ")[0]}</h3>
-                  <p>Temperature: {forecast.main.temp}°C</p>
-                  <p>Description: {forecast.weather[0].description}</p>
-                </div>
-              ))}
-            </div>
+            {weatherData.weeklyForecast.map((forecast) => (
+              <div className="day-forecast" key={forecast.dt}>
+                <h3>
+                  {new Date(forecast.dt_txt).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </h3>
+                <p>Temperature: {forecast.main.temp}°C</p>
+                <p>Description: {forecast.weather[0].description}</p>
+              </div>
+            ))}
+          </div>
           )}
         </>
       )}

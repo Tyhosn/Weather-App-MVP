@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(to bottom, #8fa0a5, #0072ff);
+  /* background: linear-gradient(to bottom, #8fa0a5, #0072ff); */
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -7,6 +7,22 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.weather-sunny {
+  background: linear-gradient(to bottom, #ffcb1f, #ffb800);
+}
+
+.weather-cloudy {
+  background: linear-gradient(to bottom, #c1c1c1, #777777);
+}
+
+.weather-rain {
+  background: linear-gradient(to bottom, #536976, #292e49);
+}
+
+.weather-default {
+  background: linear-gradient(to bottom, #243a41, #011022);
 }
 
 .weather-app {
