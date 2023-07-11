@@ -54,9 +54,31 @@ const WeatherApp = () => {
       }
     };
 
-    // Fetch the weekly forecast only if a city is selected
+    // Fetch the weather data for today
+    const fetchTodayWeather = async () => {
+      try {
+        const response = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
+        );
+        const data = await response.json();
+
+        if (response.ok) {
+          setWeatherData((prevData) => ({
+            ...prevData,
+            todayWeather: data,
+          }));
+        } else {
+          console.log(data.message); // Log the error message if the request fails
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    // Fetch the weather data only if a city is selected
     if (city) {
       fetchWeeklyForecast();
+      fetchTodayWeather();
     }
   }, [city, API_KEY]);
 
@@ -74,7 +96,15 @@ const WeatherApp = () => {
       </form>
       {weatherData && (
         <>
-          <Weather weatherData={weatherData} />
+          {weatherData.todayWeather && (
+            <div className="weather">
+              <h2>{weatherData.todayWeather.name}</h2>
+              <p>Temperature: {weatherData.todayWeather.main.temp}°C</p>
+              <p>
+                Description: {weatherData.todayWeather.weather[0].description}
+              </p>
+            </div>
+          )}
           {weatherData.weeklyForecast && (
             <div className="weekly-forecast">
               {weatherData.weeklyForecast.map((forecast) => (
