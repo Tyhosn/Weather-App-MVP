@@ -1,6 +1,6 @@
 import React from 'react';
 import WeatherApp from './WeatherApp';
-import './App.css';
+import './Weather.css';
 
 const App = () => {
   return (
